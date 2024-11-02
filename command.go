@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"sort"
+	"strings"
 	"text/tabwriter"
 )
 
@@ -92,7 +93,11 @@ func (c Cmd) HelpText() string {
 		p("Commands:")
 		w := tabwriter.NewWriter(&b, 0, 4, 2, ' ', 0)
 		for _, child := range c.Children() {
-			fmt.Fprintf(w, "\t%s\t\t\t%s\n", child.Name, child.Help)
+			name := child.Name
+			if child.Aliases != nil {
+				name += ", " + strings.Join(child.Aliases, ", ")
+			}
+			fmt.Fprintf(w, "\t%s\t\t\t%s\n", name, child.Help)
 		}
 		w.Flush()
 		p()
