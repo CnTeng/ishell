@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/abiosoft/ishell/v2"
+	"github.com/CnTeng/ishell/v2"
 	"github.com/fatih/color"
 )
 
@@ -38,7 +38,6 @@ func main() {
 
 			// do something with username and password
 			c.Println("Your inputs were", username, "and", password+".")
-
 		},
 		Help: "simulate a login",
 	})
